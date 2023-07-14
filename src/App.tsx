@@ -1,8 +1,12 @@
+import { Toaster } from "react-hot-toast";
+import Main from "./layouts/Main";
+
 function App() {
   return (
-    <>
-      <h1>This is Book catalof</h1>
-    </>
+    <div>
+      <Toaster />
+      <Main />
+    </div>
   );
 }
 
