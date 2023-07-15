@@ -1,16 +1,21 @@
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  useAddReviewMutation,
   useDeleteBookMutation,
   useSingleBookQuery,
 } from "../redux/features/books/bookApi";
 import { useAppSelector } from "../redux/hook";
 import { toast } from "react-hot-toast";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 const BookDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { data } = useSingleBookQuery(id);
+  const { data } = useSingleBookQuery(id, {
+    pollingInterval: 20000,
+    refetchOnMountOrArgChange: true,
+  });
   const { user } = useAppSelector((state) => state.auth);
   const [deleteBook] = useDeleteBookMutation();
 
@@ -24,12 +29,21 @@ const BookDetails = () => {
 
   type IReview = {
     review: string;
+    bookID: string;
   };
 
-  const { register, handleSubmit } = useForm<IReview>();
-  const onSubmit: SubmitHandler<IReview> = (data: IReview) => {
-    console.log(data);
+  const { register, handleSubmit, reset } = useForm<IReview>();
+  const [postReview, { data: reviewData }] = useAddReviewMutation();
+  const onSubmit: SubmitHandler<IReview> = (reviewdata: IReview) => {
+    const reviewData = { ...reviewdata, id: data?._id };
+    postReview(reviewData);
   };
+  useEffect(() => {
+    if (reviewData?.modifiedCount) {
+      reset();
+      toast.success("Review Added");
+    }
+  }, [reviewData, reset]);
   return (
     <div className="p-5 mt-[5rem] ">
       <div className=" flex flex-col justify-between space-y-8 md:space-y-0 md:flex-row md:space-x-4 ">
@@ -121,13 +135,6 @@ const BookDetails = () => {
               Add Review
             </button>
           </form>
-          {/* <p className="font-bold text-[18px]">
-            Status: <b className={`text-green-500`}> {data?.status}</b>
-          </p>
-          <div className="font-semibold">
-            Description:{" "}
-            <p className="font-normal text-[16px] ">{data?.features}</p>
-          </div> */}
         </div>
       </div>
     </div>
