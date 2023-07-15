@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useSingleBookQuery } from "../redux/features/books/bookApi";
+import { useAppSelector } from "../redux/hook";
+import { toast } from "react-hot-toast";
 
 const BookDetails = () => {
   const { id } = useParams();
   const { data } = useSingleBookQuery(id);
+  const { user } = useAppSelector((state) => state.auth);
   return (
     <div className="p-5 mt-[5rem] ">
       <div className=" flex flex-col justify-between space-y-8 md:space-y-0 md:flex-row md:space-x-4 ">
@@ -35,20 +38,34 @@ const BookDetails = () => {
 
           <div className=" flex flex-col lg:flex-row lg:gap-4 justify-start items-center  ">
             <div className="flex justify-center  my-4">
-              <button
-                className=" w-[15rem] bg-blue-50 hover:bg-blue-200 font-bold text-center rounded-md py-1 px-2 mx-auto  "
-                disabled={data?.status === "Out of Stock" ? true : false}
-                // onClick={() => {
-                //   dispatch(addToCart(data[0]));
-                //   toast.success("Your product added to the cart");
-                // }}
-              >
-                {data?.status !== "Out of Stock" ? (
-                  <span> Add to Cart</span>
-                ) : (
-                  <span>Out Of Stock </span>
-                )}
-              </button>
+              {data?.addedBy === user?.email ? (
+                <button
+                  className=" w-[15rem] bg-blue-50 hover:bg-blue-200 font-bold text-center rounded-md py-1 px-2 mx-auto"
+                  disabled={data?.addedBy === user?.email ? false : true}
+                  onClick={() => {
+                    toast.success("Book Edited");
+                  }}
+                >
+                  Edit Book
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="flex justify-center  my-4">
+              {data?.addedBy === user?.email ? (
+                <button
+                  className=" w-[15rem] bg-blue-50 hover:bg-blue-200 font-bold text-center rounded-md py-1 px-2 mx-auto"
+                  disabled={data?.addedBy === user?.email ? false : true}
+                  onClick={() => {
+                    toast.success("Book Deleted Successfully");
+                  }}
+                >
+                  Delete Book
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {/* <p className="font-bold text-[18px]">

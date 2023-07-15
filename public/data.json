@@ -9,7 +9,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/en/6/65/ThingsFallApart.jpg",
     "language": "English",
     "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
-    "publicationDate": "01-08-1958"
+    "publicationDate": "01-08-1958",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["Nice Book", "Happy Reading this Book"]
   },
   {
     "_id": {
@@ -21,7 +23,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hans_Christian_Andersen_%281834_painting%29.jpg",
     "language": "Danish",
     "link": "https://en.wikipedia.org/wiki/Fairy_Tales_Told_for_Children._First_Collection.",
-    "publicationDate": "16-09-1836"
+    "publicationDate": "16-09-1836",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -33,7 +37,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Dante_Domenico_di_Michelino.jpg/800px-Dante_Domenico_di_Michelino.jpg",
     "language": "Italian",
     "link": "https://en.wikipedia.org/wiki/Divine_Comedy",
-    "publicationDate": "01-10-1315"
+    "publicationDate": "01-10-1315",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -45,7 +51,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/British_Museum_Flood_Tablet.jpg/800px-British_Museum_Flood_Tablet.jpg",
     "language": "Akkadian",
     "link": "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh",
-    "publicationDate": "12-12-1700"
+    "publicationDate": "12-12-1700",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -57,7 +65,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Moby-Dick_FE_title_page.jpg/800px-Moby-Dick_FE_title_page.jpg",
     "language": "Hebrew",
     "link": "https://en.wikipedia.org/wiki/Book_of_Job",
-    "publicationDate": "11-07-1600"
+    "publicationDate": "11-07-1600",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -69,7 +79,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Cassim.jpg",
     "language": "Arabic",
     "link": "https://en.wikipedia.org/wiki/One_Thousand_and_One_Nights",
-    "publicationDate": "25-07-1200"
+    "publicationDate": "25-07-1200",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -81,7 +93,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Njal_saga_-_Skarphedinn.jpg/220px-Njal_saga_-_Skarphedinn.jpg",
     "language": "Old Norse",
     "link": "https://en.wikipedia.org/wiki/Nj%C3%A1ls_saga",
-    "publicationDate": "01-08-1350"
+    "publicationDate": "01-08-1350",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -93,7 +107,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PrideAndPrejudiceTitlePage.jpg/220px-PrideAndPrejudiceTitlePage.jpg",
     "language": "English",
     "link": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
-    "publicationDate": "01-09-1813"
+    "publicationDate": "01-09-1813",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -105,7 +121,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Le_P%C3%A8re_Goriot%2C_1er_Volume%2C_1835.png/800px-Le_P%C3%A8re_Goriot%2C_1er_Volume%2C_1835.png",
     "language": "French",
     "link": "https://en.wikipedia.org/wiki/Le_P%C3%A8re_Goriot",
-    "publicationDate": "23-04-1835"
+    "publicationDate": "23-04-1835",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -117,7 +135,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/en/9/90/Beckett_Molloy.jpg",
     "language": "French, English",
     "link": "https://en.wikipedia.org/wiki/Molloy_(novel)",
-    "publicationDate": "12-05-1952"
+    "publicationDate": "12-05-1952",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -129,7 +149,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Boccaccio_-_Decameron%2C_MCCCCLXXXXII_ad_di_XX_de_giugno_-_3852856_Scan00015.tif/lossy-page1-220px-Boccaccio_-_Decameron%2C_MCCCCLXXXXII_ad_di_XX_de_giugno_-_3852856_Scan00015.tif.jpg",
     "language": "Italian",
     "link": "https://en.wikipedia.org/wiki/The_Decameron",
-    "publicationDate": "19-06-1351"
+    "publicationDate": "19-06-1351",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -141,7 +163,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/en/d/d6/Ficciones.jpg",
     "language": "Spanish",
     "link": "https://en.wikipedia.org/wiki/Ficciones",
-    "publicationDate": "01-11-1965"
+    "publicationDate": "01-11-1965",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -153,7 +177,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Houghton_Lowell_1238.5_%28A%29_-_Wuthering_Heights%2C_1847.jpg/320px-Houghton_Lowell_1238.5_%28A%29_-_Wuthering_Heights%2C_1847.jpg",
     "language": "English",
     "link": "https://en.wikipedia.org/wiki/Wuthering_Heights",
-    "publicationDate": "26-07-1847"
+    "publicationDate": "26-07-1847",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -165,7 +191,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/Lolita_1955.JPG",
     "language": "French",
     "link": "https://en.wikipedia.org/wiki/Lolita",
-    "publicationDate": "30-08-1942"
+    "publicationDate": "30-08-1942",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -177,7 +205,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/1984first.jpg/220px-1984first.jpg",
     "language": "English",
     "link": "https://en.wikipedia.org/wiki/Nineteen_Eighty-Four",
-    "publicationDate": "21-03-1952"
+    "publicationDate": "21-03-1952",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -189,7 +219,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/en/f/ff/Journey_to_the_End_of_the_Night_cover.jpg",
     "language": "French",
     "link": "https://en.wikipedia.org/wiki/Journey_to_the_End_of_the_Night",
-    "publicationDate": "11-08-1932"
+    "publicationDate": "11-08-1932",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -201,7 +233,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Title_page_first_edition_Don_Quijote.jpg",
     "language": "Spanish",
     "link": "https://en.wikipedia.org/wiki/Don_Quixote",
-    "publicationDate": "26-05-1610"
+    "publicationDate": "26-05-1610",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   },
   {
     "_id": {
@@ -213,6 +247,8 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Canterbury_Tales.png",
     "language": "English",
     "link": "https://en.wikipedia.org/wiki/The_Canterbury_Tales",
-    "publicationDate": "17-06-1450"
+    "publicationDate": "17-06-1450",
+    "addedBy": "kolmi@lota.com",
+    "reviews": ["A Greate Book"]
   }
 ]
