@@ -1,12 +1,25 @@
-import { useParams } from "react-router-dom";
-import { useSingleBookQuery } from "../redux/features/books/bookApi";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useDeleteBookMutation,
+  useSingleBookQuery,
+} from "../redux/features/books/bookApi";
 import { useAppSelector } from "../redux/hook";
 import { toast } from "react-hot-toast";
 
 const BookDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data } = useSingleBookQuery(id);
   const { user } = useAppSelector((state) => state.auth);
+  const [deleteBook] = useDeleteBookMutation();
+
+  const handleDeleteBook = (id: string) => {
+    if (window.confirm("Want to Delete is Book?")) {
+      deleteBook(id);
+      toast.success("Book Deleted Successfully");
+      navigate("/allbooks");
+    }
+  };
   return (
     <div className="p-5 mt-[5rem] ">
       <div className=" flex flex-col justify-between space-y-8 md:space-y-0 md:flex-row md:space-x-4 ">
@@ -57,9 +70,7 @@ const BookDetails = () => {
                 <button
                   className=" w-[15rem] bg-blue-50 hover:bg-blue-200 font-bold text-center rounded-md py-1 px-2 mx-auto"
                   disabled={data?.addedBy === user?.email ? false : true}
-                  onClick={() => {
-                    toast.success("Book Deleted Successfully");
-                  }}
+                  onClick={() => handleDeleteBook(data?._id)}
                 >
                   Delete Book
                 </button>
