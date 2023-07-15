@@ -2,17 +2,27 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "../redux/hook";
 import { IBook } from "../types/bookType";
 import { useAddBookMutation } from "../redux/features/books/bookApi";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 const AddBook = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm<IBook>();
   const { user } = useAppSelector((state) => state.auth);
 
-  const [addBook, { data }] = useAddBookMutation();
+  const [addBook, { data, isError, error }] = useAddBookMutation();
   const onSubmit: SubmitHandler<IBook> = (bookdata: IBook) => {
-    const bookData = { ...bookdata, addedBy: user?.email, reviews: [] };
-    // addBook(bookData)
-    console.log(bookData);
+    const book = { ...bookdata, addedBy: user?.email, reviews: [] };
+    console.log(book);
+    addBook(book);
   };
+  useEffect(() => {
+    if (data) {
+      toast.success("Book Added Successfully");
+      reset();
+    } else if (isError) {
+      toast.error(`${error}`);
+    }
+  }, [data, isError, error, reset]);
   return (
     <div className="text-start p-10 bg-white">
       <h2 className="text-xl font-bold text-center">Add A New Book</h2>
@@ -68,17 +78,18 @@ const AddBook = () => {
             </select>
           </div>
         </div>
-
-        <div className="form-control w-full ">
-          <label className="label">
-            <span className="label-text text-md">Image</span>
-          </label>
-          <input
-            type="text"
-            {...register("image", { required: true })}
-            placeholder="Put an Image Link"
-            className="input  border-gray-500 w-1/2 "
-          />
+        <div className="flex flex-row">
+          <div className="form-control w-full mx-2">
+            <label className="label">
+              <span className="label-text text-md">Image</span>
+            </label>
+            <input
+              type="text"
+              {...register("image", { required: true })}
+              placeholder="Put an Image Link"
+              className="input  border-gray-500 w-full "
+            />
+          </div>
         </div>
 
         <button type="submit" className="btn  bg-blue-100   my-2">
