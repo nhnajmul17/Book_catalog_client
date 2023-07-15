@@ -23,7 +23,6 @@ const Login = () => {
   );
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data: LoginFormInputs) => {
-    console.log(data);
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
 
