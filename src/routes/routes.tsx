@@ -28,16 +28,17 @@ const routes = createBrowserRouter([
         path: "/addbook",
         element: <AddBook />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
     ],
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
+
   // {
   //   path: '*',
   //   element: <NotFound />,

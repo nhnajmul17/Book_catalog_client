@@ -131,7 +131,11 @@ const BookDetails = () => {
                 className="input  border-gray-500 w-full h-24 "
               />
             </div>
-            <button type="submit" className="btn btn-primary  my-2">
+            <button
+              type="submit"
+              className="btn btn-primary  my-2"
+              disabled={user?.email ? false : true}
+            >
               Add Review
             </button>
           </form>
