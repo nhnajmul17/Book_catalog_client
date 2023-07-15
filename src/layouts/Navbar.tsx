@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { signOut } from "firebase/auth";
+import auth from "../utils/firebase.config";
+import { setUser } from "../redux/features/auth/authSlice";
 
 const Navbar = () => {
+  const { user } = useAppSelector((state) => state.auth);
+
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      dispatch(setUser(null));
+    });
+  };
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
       <div className="h-full w-full bg-white/60">
@@ -45,15 +58,21 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
+              {/* <li>
                 <a className="justify-between">User Name</a>
-              </li>
-              <li></li>
-              <li>
-                <Link to="/login">
-                  <a>Login</a>
-                </Link>
-              </li>
+              </li> */}
+              {user.email && (
+                <li onClick={handleLogout}>
+                  <a>Logout</a>
+                </li>
+              )}
+              {!user.email && (
+                <li>
+                  <Link to="/login">
+                    <a>Login</a>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
