@@ -5,6 +5,7 @@ import {
 } from "../redux/features/books/bookApi";
 import { useAppSelector } from "../redux/hook";
 import { toast } from "react-hot-toast";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 const BookDetails = () => {
   const navigate = useNavigate();
@@ -19,6 +20,15 @@ const BookDetails = () => {
       toast.success("Book Deleted Successfully");
       navigate("/allbooks");
     }
+  };
+
+  type IReview = {
+    review: string;
+  };
+
+  const { register, handleSubmit } = useForm<IReview>();
+  const onSubmit: SubmitHandler<IReview> = (data: IReview) => {
+    console.log(data);
   };
   return (
     <div className="p-5 mt-[5rem] ">
@@ -79,6 +89,38 @@ const BookDetails = () => {
               )}
             </div>
           </div>
+          <div className="mt-10">
+            <h3 className="font-bold text-2xl mb-2">Reviews</h3>
+            {data?.reviews?.map((review: string, index: number) => (
+              <div
+                key={index}
+                className="flex gap-3 items-center mb-5 bg-gray-100"
+              >
+                <label className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src="https://github.com/euotiniel.png" />
+                  </div>
+                </label>
+                <p>{review}</p>
+              </div>
+            ))}
+          </div>
+          <form
+            className="flex gap-5 items-center"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="form-control w-full ">
+              <input
+                type="text"
+                {...register("review", { required: true })}
+                placeholder=""
+                className="input  border-gray-500 w-full h-24 "
+              />
+            </div>
+            <button type="submit" className="btn btn-primary  my-2">
+              Add Review
+            </button>
+          </form>
           {/* <p className="font-bold text-[18px]">
             Status: <b className={`text-green-500`}> {data?.status}</b>
           </p>

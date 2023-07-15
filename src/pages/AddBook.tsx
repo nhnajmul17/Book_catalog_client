@@ -87,14 +87,15 @@ const AddBook = () => {
               type="text"
               {...register("image", { required: true })}
               placeholder="Put an Image Link"
-              className="input  border-gray-500 w-full "
+              className="input  border-gray-500 w-1/2 "
             />
           </div>
         </div>
-
-        <button type="submit" className="btn  bg-blue-100   my-2">
-          ADD
-        </button>
+        <div className="text-center">
+          <button type="submit" className="btn bg-blue-100 my-2 w-1/4">
+            ADD
+          </button>
+        </div>
       </form>
     </div>
   );
