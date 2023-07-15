@@ -32,7 +32,7 @@ const Navbar = () => {
           <div>
             <ul className="flex items-center">
               <li>
-                <Link to="/products">
+                <Link to="/allbooks">
                   <button className="py-2 px-4 mx-4 bg-blue-50 font-semibold rounded-full shadow-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                     All Books
                   </button>
