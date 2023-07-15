@@ -30,6 +30,7 @@ const Login = () => {
   useEffect(() => {
     if (!isLoading && user.email) {
       navigate("/");
+      toast.success("Login Successfull");
     }
   }, [user, isLoading, navigate]);
   return (
