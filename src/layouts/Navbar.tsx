@@ -38,20 +38,13 @@ const Navbar = () => {
                   </button>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/dashboard">
                   <button className="py-2 mx-2 px-4 bg-blue-50 font-semibold rounded-full shadow-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                     Dashboard
                   </button>
                 </Link>
-              </li>
-              {/* <li>
-                  <button>
-                    <Link to="/cart">
-                      <HiOutlineShoppingCart size="25" />
-                    </Link>
-                  </button>
-                </li> */}
+              </li> */}
             </ul>
           </div>
           <div className="dropdown dropdown-end">
