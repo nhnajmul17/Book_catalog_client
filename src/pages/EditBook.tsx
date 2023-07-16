@@ -1,11 +1,19 @@
 import { useParams } from "react-router-dom";
-import { useSingleBookQuery } from "../redux/features/books/bookApi";
+import {
+  useEditBookMutation,
+  useSingleBookQuery,
+} from "../redux/features/books/bookApi";
 import { useForm } from "react-hook-form";
 import { IBook } from "../types/bookType";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 const EditBook = () => {
   const { id } = useParams();
   const { data } = useSingleBookQuery(id);
+  const date = data?.publicationDate.split("T")[0];
+  const [editBook, { data: editedData }] = useEditBookMutation();
+
   const { register, handleSubmit } = useForm<IBook>();
   const onSubmit = (editdata: IBook) => {
     const editBookData = {
@@ -13,8 +21,17 @@ const EditBook = () => {
       addedBy: data?.addedBy,
       reviews: data?.reviews,
     };
-    console.log(editBookData);
+    const option = {
+      id: data?._id,
+      data: editBookData,
+    };
+    editBook(option);
   };
+  useEffect(() => {
+    if (editedData) {
+      toast.success("Edited Book Success");
+    }
+  }, [editedData]);
 
   return (
     <div className="text-start p-10 bg-white">
@@ -55,7 +72,7 @@ const EditBook = () => {
                 required: true,
                 valueAsDate: true,
               })}
-              defaultValue={data?.publicationDate}
+              defaultValue={date}
               className="input border-gray-500 w-full "
             />
           </div>

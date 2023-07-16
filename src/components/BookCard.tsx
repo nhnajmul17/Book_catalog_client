@@ -36,7 +36,7 @@ const BookCard = ({ book }: IProps) => {
             <div className=" flex justify-center items-center ">
               <h2 className="  text-[15px] md:text-[15px]  ">
                 <span className="font-medium">Publication Date:</span>{" "}
-                {publicationDate}
+                {publicationDate.split("T")[0]}
               </h2>
             </div>
             <div className="   flex justify-center items-center mt-4 ">

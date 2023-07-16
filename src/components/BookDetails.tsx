@@ -70,7 +70,10 @@ const BookDetails = () => {
             <span className="  "> Genre: {data?.genre}</span>
           </div>
           <div className=" text-center md:text-left border-y-2 py-4 items-center ">
-            <span className="  "> Published : {data?.publicationDate}</span>
+            <span className="  ">
+              {" "}
+              Published : {data?.publicationDate.split("T")[0]}
+            </span>
           </div>
 
           <div className=" flex flex-col lg:flex-row lg:gap-4 justify-start items-center  ">
