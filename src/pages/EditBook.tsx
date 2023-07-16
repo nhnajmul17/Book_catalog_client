@@ -1,31 +1,24 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useAppSelector } from "../redux/hook";
+import { useParams } from "react-router-dom";
+import { useSingleBookQuery } from "../redux/features/books/bookApi";
+import { useForm } from "react-hook-form";
 import { IBook } from "../types/bookType";
-import { useAddBookMutation } from "../redux/features/books/bookApi";
-import { useEffect } from "react";
-import { toast } from "react-hot-toast";
 
-const AddBook = () => {
-  const { register, handleSubmit, reset } = useForm<IBook>();
-  const { user } = useAppSelector((state) => state.auth);
-
-  const [addBook, { data, isError, error }] = useAddBookMutation();
-  const onSubmit: SubmitHandler<IBook> = (bookdata: IBook) => {
-    const book = { ...bookdata, addedBy: user?.email, reviews: [] };
-    console.log(book);
-    addBook(book);
+const EditBook = () => {
+  const { id } = useParams();
+  const { data } = useSingleBookQuery(id);
+  const { register, handleSubmit } = useForm<IBook>();
+  const onSubmit = (editdata: IBook) => {
+    const editBookData = {
+      ...editdata,
+      addedBy: data?.addedBy,
+      reviews: data?.reviews,
+    };
+    console.log(editBookData);
   };
-  useEffect(() => {
-    if (data) {
-      toast.success("Book Added Successfully");
-      reset();
-    } else if (isError) {
-      toast.error(`${error}`);
-    }
-  }, [data, isError, error, reset]);
+
   return (
     <div className="text-start p-10 bg-white">
-      <h2 className="text-xl font-bold text-center">Add A New Book</h2>
+      <h2 className="text-2xl font-bold text-center">Edit Book</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-row">
           <div className="form-control w-full mx-2">
@@ -35,7 +28,7 @@ const AddBook = () => {
             <input
               type="text"
               {...register("title", { required: true })}
-              placeholder="Book Name"
+              defaultValue={data?.title}
               className="input border-gray-500 w-full "
             />
           </div>
@@ -46,7 +39,7 @@ const AddBook = () => {
             <input
               type="text"
               {...register("author", { required: true })}
-              placeholder="Author Name"
+              defaultValue={data?.author}
               className="input border-gray-500 w-full "
             />
           </div>
@@ -57,12 +50,12 @@ const AddBook = () => {
               <span className="label-text text-md ">Published Date</span>
             </label>
             <input
-              type="date"
+              type="text"
               {...register("publicationDate", {
                 required: true,
                 valueAsDate: true,
               })}
-              placeholder="2025-05-25"
+              defaultValue={data?.publicationDate}
               className="input border-gray-500 w-full "
             />
           </div>
@@ -73,6 +66,7 @@ const AddBook = () => {
             <select
               {...register("genre", { required: true })}
               className="input border-gray-500 w-full "
+              defaultValue={data?.genre}
             >
               <option value="Fiction">Fiction</option>
               <option value="History">History</option>
@@ -89,14 +83,14 @@ const AddBook = () => {
             <input
               type="text"
               {...register("image", { required: true })}
-              placeholder="Put an Image Link"
+              defaultValue={data?.image}
               className="input  border-gray-500 w-1/2 "
             />
           </div>
         </div>
         <div className="text-center">
           <button type="submit" className="btn bg-blue-100 my-2 w-1/4">
-            ADD
+            Edit
           </button>
         </div>
       </form>
@@ -104,4 +98,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
+export default EditBook;

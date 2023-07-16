@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   useAddReviewMutation,
   useDeleteBookMutation,
@@ -76,15 +76,14 @@ const BookDetails = () => {
           <div className=" flex flex-col lg:flex-row lg:gap-4 justify-start items-center  ">
             <div className="flex justify-center  my-4">
               {data?.addedBy === user?.email ? (
-                <button
-                  className=" w-[15rem] bg-blue-50 hover:bg-blue-200 font-bold text-center rounded-md py-1 px-2 mx-auto"
-                  disabled={data?.addedBy === user?.email ? false : true}
-                  onClick={() => {
-                    toast.success("Book Edited");
-                  }}
-                >
-                  Edit Book
-                </button>
+                <Link to={`/editbook/${data?._id}`}>
+                  <button
+                    className=" w-[15rem] bg-blue-50 hover:bg-blue-200 font-bold text-center rounded-md py-1 px-2 mx-auto"
+                    disabled={data?.addedBy === user?.email ? false : true}
+                  >
+                    Edit Book
+                  </button>
+                </Link>
               ) : (
                 ""
               )}

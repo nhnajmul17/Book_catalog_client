@@ -52,7 +52,7 @@ const AllBooks = () => {
         <input
           type="text"
           className="input border-gray-500 w-1/4 mx-2"
-          placeholder="Search"
+          placeholder="Search with title, author, or genre"
           value={searchQuery}
           onChange={handleSearch}
         />
