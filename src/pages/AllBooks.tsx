@@ -46,6 +46,13 @@ const AllBooks = () => {
     }
   }, [data, searchQuery, genreFilter]);
 
+  const genreOptions = ["All Genres"];
+  data.map((book: IBook) => {
+    if (!genreOptions.includes(book.genre)) {
+      genreOptions.push(book?.genre);
+    }
+  });
+
   return (
     <>
       <div className="flex flex-row justify-center items-center mt-4">
@@ -61,11 +68,13 @@ const AllBooks = () => {
           value={genreFilter}
           onChange={handleGenreFilter}
         >
-          <option value="">All Genres</option>
-          <option value="Fiction">Fiction</option>
-          <option value="Novel">Novel</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="History">History</option>
+          {genreOptions.map((option) => {
+            return option === "All Genres" ? (
+              <option value="">All Genres</option>
+            ) : (
+              <option value={option}>{option}</option>
+            );
+          })}
         </select>
       </div>
 

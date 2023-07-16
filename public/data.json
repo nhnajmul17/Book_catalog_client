@@ -129,7 +129,7 @@
     "_id": {
       "$oid": "6173e3e59ab2ca6bbca13bb1"
     },
-    "title": "Molloy, Malone Dies, The Unnamable, the trilogy",
+    "title": "Molloy, Malone Dies, The Unnamable",
     "author": "Samuel Beckett",
     "genre": "History",
     "image": "https://upload.wikimedia.org/wikipedia/en/9/90/Beckett_Molloy.jpg",
@@ -213,7 +213,7 @@
     "_id": {
       "$oid": "6173e3e59ab2ca6bbca13bb7"
     },
-    "title": "Journey to the End of the Night",
+    "title": "Journey to the End of Night",
     "author": "Louis-Ferdinand",
     "genre": "Fiction",
     "image": "https://upload.wikimedia.org/wikipedia/en/f/ff/Journey_to_the_End_of_the_Night_cover.jpg",
