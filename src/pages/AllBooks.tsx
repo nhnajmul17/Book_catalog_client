@@ -4,19 +4,25 @@ import BookCard from "../components/BookCard";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
 import { IBook } from "../types/bookType";
 import { toast } from "react-hot-toast";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import {
+  setGenreFilter,
+  setSearchQuery,
+} from "../redux/features/books/bookSlice";
 
 const AllBooks = () => {
   const { data } = useGetBooksQuery(undefined);
-  const [searchQuery, setSearchQuery] = useState("");
   const [filteredBooks, setFilteredBooks] = useState([]);
-  const [genreFilter, setGenreFilter] = useState("");
+
+  const dispatch = useAppDispatch();
+  const { searchQuery, genreFilter } = useAppSelector((state) => state.books);
 
   const handleGenreFilter = (e: any) => {
-    setGenreFilter(e.target.value);
+    dispatch(setGenreFilter(e.target.value));
   };
 
   const handleSearch = (e: any) => {
-    setSearchQuery(e.target.value);
+    dispatch(setSearchQuery(e.target.value));
   };
 
   useEffect(() => {
@@ -34,7 +40,9 @@ const AllBooks = () => {
     if (filtered?.length) {
       setFilteredBooks(filtered);
     } else {
-      toast("No Search Result Found ");
+      toast("No Search Result Found ", {
+        id: "SearchMsg",
+      });
     }
   }, [data, searchQuery, genreFilter]);
 
@@ -57,6 +65,7 @@ const AllBooks = () => {
           <option value="Fiction">Fiction</option>
           <option value="Novel">Novel</option>
           <option value="Fantasy">Fantasy</option>
+          <option value="History">History</option>
         </select>
       </div>
 
