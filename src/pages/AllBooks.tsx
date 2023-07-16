@@ -10,6 +10,7 @@ import {
   setSearchQuery,
   setYearFilter,
 } from "../redux/features/books/bookSlice";
+import { Link } from "react-router-dom";
 
 const AllBooks = () => {
   const { data } = useGetBooksQuery(undefined);
@@ -96,15 +97,23 @@ const AllBooks = () => {
           value={yearFilter}
           onChange={handleYearFilter}
         >
-          {yearOptions.map((option) => {
-            return option === "All Years" ? (
-              <option value="">All Years</option>
-            ) : (
-              <option value={option}>{option}</option>
-            );
-          })}
+          {yearOptions
+            .sort()
+            .reverse()
+            .map((option) => {
+              return option === "All Years" ? (
+                <option value="">All Years</option>
+              ) : (
+                <option value={option}>{option}</option>
+              );
+            })}
         </select>
       </div>
+      <Link to="/addbook">
+        <button className="fixed bottom-10 right-10 z-20 btn bg-blue-300">
+          Add New
+        </button>
+      </Link>
 
       {filteredBooks?.length ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
