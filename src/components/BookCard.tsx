@@ -68,20 +68,24 @@ const BookCard = ({ book }: IProps) => {
             </div>
           </div>
         </Link>
-        <div className=" flex flex-row justify-center items-center mt-4 ">
-          <button
-            className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all mx-2"
-            onClick={handleWishList}
-          >
-            Add To WishList
-          </button>
-          <button
-            className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all mx-2 "
-            onClick={handleReadingList}
-          >
-            Add To Reading List
-          </button>
-        </div>
+        {user?.email && (
+          <div className=" flex flex-row justify-center items-center mt-4 ">
+            <button
+              className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all mx-2"
+              onClick={handleWishList}
+              disabled={user?.email ? false : true}
+            >
+              Add To WishList
+            </button>
+            <button
+              className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all mx-2 "
+              onClick={handleReadingList}
+              disabled={user?.email ? false : true}
+            >
+              Add To Reading List
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

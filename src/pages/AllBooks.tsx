@@ -108,7 +108,23 @@ const AllBooks = () => {
               );
             })}
         </select>
+        {/* {user.email && (
+          <div className="">
+            <Link to="/wishlist">
+              <button className="py-2 px-4 mx-4 bg-blue-50 font-semibold rounded-full shadow-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                Wish List
+              </button>
+            </Link>
+
+            <Link to="/readinglist">
+              <button className="py-2 mx-2 px-4 bg-blue-50 font-semibold rounded-full shadow-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                Reading List
+              </button>
+            </Link>
+          </div>
+        )} */}
       </div>
+
       <Link to="/addbook">
         <button className="fixed bottom-10 right-10 z-20 btn bg-blue-300">
           Add New
