@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { IBook } from "../types/bookType";
-import { useAppSelector } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { useAddwishlistMutation } from "../redux/features/wishlist/wishlistApi";
 import { toast } from "react-hot-toast";
+import { setReadingList } from "../redux/features/wishlist/wishlistSlice";
+
 interface IProps {
   book: IBook;
 }
@@ -12,6 +14,7 @@ const BookCard = ({ book }: IProps) => {
   const { user } = useAppSelector((state) => state.auth);
   const [addwishlist] = useAddwishlistMutation();
   const { wishList } = useAppSelector((state) => state.wishlist);
+  const dispatch = useAppDispatch();
 
   const handleWishList = () => {
     const wishlistData = { book: book, email: user?.email };
@@ -22,6 +25,10 @@ const BookCard = ({ book }: IProps) => {
       addwishlist(wishlistData);
       toast.success("Added In Wish List");
     }
+  };
+
+  const handleReadingList = () => {
+    dispatch(setReadingList(book));
   };
 
   return (
@@ -61,12 +68,18 @@ const BookCard = ({ book }: IProps) => {
             </div>
           </div>
         </Link>
-        <div className=" flex justify-center items-center mt-4 ">
+        <div className=" flex flex-row justify-center items-center mt-4 ">
           <button
-            className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all "
+            className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all mx-2"
             onClick={handleWishList}
           >
             Add To WishList
+          </button>
+          <button
+            className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all mx-2 "
+            onClick={handleReadingList}
+          >
+            Add To Reading List
           </button>
         </div>
       </div>

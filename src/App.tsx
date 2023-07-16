@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { onAuthStateChanged } from "firebase/auth";
 import Main from "./layouts/Main";
 import { setLoading, setUser } from "./redux/features/auth/authSlice";
