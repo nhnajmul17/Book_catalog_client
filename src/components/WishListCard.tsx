@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
 import { IBook } from "../types/bookType";
+import { useRemoveWishListMutation } from "../redux/features/wishlist/wishlistApi";
+import { toast } from "react-hot-toast";
 
 interface IProps {
   book: IBook;
 }
 const WishListCard = ({ book }: IProps) => {
   const { _id, title, image, author, genre, publicationDate } = book.book;
+  const [removeFromList] = useRemoveWishListMutation();
+
+  const handleRemoveWishList = () => {
+    removeFromList(book._id);
+    toast.success("Removed From WishList");
+  };
+
   return (
     <>
       <div className="mx-auto w-[22rem] rounded-md border-2 p-2 shadow-xl cursor-pointer hover:-translate-y-2 transition-all ">
@@ -46,7 +55,7 @@ const WishListCard = ({ book }: IProps) => {
         <div className=" flex justify-center items-center mt-4 ">
           <button
             className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all "
-            //   onClick={handleWishList}
+            onClick={handleRemoveWishList}
           >
             Remove From WishList
           </button>
