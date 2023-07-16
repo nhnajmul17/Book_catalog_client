@@ -1,29 +1,11 @@
 import { Link } from "react-router-dom";
 import { IBook } from "../types/bookType";
-import { useAppSelector } from "../redux/hook";
-import { useAddwishlistMutation } from "../redux/features/wishlist/wishlistApi";
-import { toast } from "react-hot-toast";
+
 interface IProps {
   book: IBook;
 }
-
-const BookCard = ({ book }: IProps) => {
-  const { _id, title, image, author, genre, publicationDate } = book;
-  const { user } = useAppSelector((state) => state.auth);
-  const [addwishlist] = useAddwishlistMutation();
-  const { wishList } = useAppSelector((state) => state.wishlist);
-
-  const handleWishList = () => {
-    const wishlistData = { book: book, email: user?.email };
-    const exist = wishList.find((book) => book?.book._id === _id);
-    if (exist) {
-      toast.error("Book Already in Wish List");
-    } else {
-      addwishlist(wishlistData);
-      toast.success("Added In Wish List");
-    }
-  };
-
+const WishListCard = ({ book }: IProps) => {
+  const { _id, title, image, author, genre, publicationDate } = book.book;
   return (
     <>
       <div className="mx-auto w-[22rem] rounded-md border-2 p-2 shadow-xl cursor-pointer hover:-translate-y-2 transition-all ">
@@ -64,9 +46,9 @@ const BookCard = ({ book }: IProps) => {
         <div className=" flex justify-center items-center mt-4 ">
           <button
             className="text-[16px] bg-blue-50 hover:bg-blue-200 px-2 rounded-md  font-bold hover:scale-105 transition-all "
-            onClick={handleWishList}
+            //   onClick={handleWishList}
           >
-            Add To WishList
+            Remove From WishList
           </button>
         </div>
       </div>
@@ -74,4 +56,4 @@ const BookCard = ({ book }: IProps) => {
   );
 };
 
-export default BookCard;
+export default WishListCard;

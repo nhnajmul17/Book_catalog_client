@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type IBook = {
   _id: number;
   title: string;
@@ -7,4 +8,5 @@ export type IBook = {
   publicationDate: string;
   addedBy: string;
   reviews: string[];
+  book?: any;
 };

@@ -1,16 +1,22 @@
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
 import { useEffect } from "react";
-import { useAppDispatch } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { setBooks } from "../redux/features/books/bookSlice";
 import { IBook } from "../types/bookType";
 import BookCard from "../components/BookCard";
+import { useGetWishListQuery } from "../redux/features/wishlist/wishlistApi";
+import { setWishList } from "../redux/features/wishlist/wishlistSlice";
 
 const Home = () => {
+  const { user } = useAppSelector((state) => state.auth);
   const { data } = useGetBooksQuery(undefined);
+  const { data: wishlistData } = useGetWishListQuery(user?.email);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setBooks(data));
-  }, [data, dispatch]);
+    dispatch(setWishList(wishlistData));
+  }, [data, dispatch, wishlistData]);
 
   const bookdata = data?.slice(-10).reverse();
 
