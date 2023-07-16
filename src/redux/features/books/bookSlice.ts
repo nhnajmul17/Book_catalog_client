@@ -6,6 +6,7 @@ interface IBookstate {
   books: IBook[];
   searchQuery: string;
   genreFilter: string;
+  yearFilter: string;
   wishList: IBook[];
 }
 
@@ -13,6 +14,7 @@ const initialState: IBookstate = {
   books: [],
   searchQuery: "",
   genreFilter: "",
+  yearFilter: "",
   wishList: [],
 };
 
@@ -29,6 +31,9 @@ const bookSlice = createSlice({
     setGenreFilter: (state, action) => {
       state.genreFilter = action.payload;
     },
+    setYearFilter: (state, action) => {
+      state.yearFilter = action.payload;
+    },
     setWishList: (state, action: PayloadAction<IBook>) => {
       const existing = state.wishList.find(
         (book) => book._id === action.payload._id
@@ -43,6 +48,11 @@ const bookSlice = createSlice({
     },
   },
 });
-export const { setBooks, setSearchQuery, setGenreFilter, setWishList } =
-  bookSlice.actions;
+export const {
+  setBooks,
+  setSearchQuery,
+  setGenreFilter,
+  setYearFilter,
+  setWishList,
+} = bookSlice.actions;
 export default bookSlice.reducer;

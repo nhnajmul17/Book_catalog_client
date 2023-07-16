@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hook";
 import {
   setGenreFilter,
   setSearchQuery,
+  setYearFilter,
 } from "../redux/features/books/bookSlice";
 
 const AllBooks = () => {
@@ -15,10 +16,15 @@ const AllBooks = () => {
   const [filteredBooks, setFilteredBooks] = useState([]);
 
   const dispatch = useAppDispatch();
-  const { searchQuery, genreFilter } = useAppSelector((state) => state.books);
+  const { searchQuery, genreFilter, yearFilter } = useAppSelector(
+    (state) => state.books
+  );
 
   const handleGenreFilter = (e: any) => {
     dispatch(setGenreFilter(e.target.value));
+  };
+  const handleYearFilter = (e: any) => {
+    dispatch(setYearFilter(e.target.value));
   };
 
   const handleSearch = (e: any) => {
@@ -28,14 +34,19 @@ const AllBooks = () => {
   useEffect(() => {
     const query = searchQuery.toLowerCase();
     const filtered = data?.filter((book: IBook) => {
-      const { title, author, genre } = book;
+      const { title, author, genre, publicationDate } = book;
       const titleMatch = title.toLowerCase().includes(query);
       const authorMatch = author.toLowerCase().includes(query);
       const genreSearch = genre.toLowerCase().includes(query);
       const genreMatch =
         genreFilter === "" || genre.toLowerCase() === genreFilter.toLowerCase();
+      const yearMatch =
+        yearFilter === "" ||
+        publicationDate.toLowerCase().includes(yearFilter.toLowerCase());
 
-      return (titleMatch || authorMatch || genreSearch) && genreMatch;
+      return (
+        (titleMatch || authorMatch || genreSearch) && genreMatch && yearMatch
+      );
     });
     if (filtered?.length) {
       setFilteredBooks(filtered);
@@ -44,12 +55,16 @@ const AllBooks = () => {
         id: "SearchMsg",
       });
     }
-  }, [data, searchQuery, genreFilter]);
+  }, [data, searchQuery, genreFilter, yearFilter]);
 
   const genreOptions = ["All Genres"];
-  data.map((book: IBook) => {
+  const yearOptions: string[] = ["All Years"];
+  data?.map((book: IBook) => {
     if (!genreOptions.includes(book.genre)) {
       genreOptions.push(book?.genre);
+    }
+    if (!yearOptions.includes(book.publicationDate.split("-")[0])) {
+      yearOptions.push(book.publicationDate.split("-")[0]);
     }
   });
 
@@ -71,6 +86,19 @@ const AllBooks = () => {
           {genreOptions.map((option) => {
             return option === "All Genres" ? (
               <option value="">All Genres</option>
+            ) : (
+              <option value={option}>{option}</option>
+            );
+          })}
+        </select>
+        <select
+          className="input border-gray-500 mx-2"
+          value={yearFilter}
+          onChange={handleYearFilter}
+        >
+          {yearOptions.map((option) => {
+            return option === "All Years" ? (
+              <option value="">All Years</option>
             ) : (
               <option value={option}>{option}</option>
             );
