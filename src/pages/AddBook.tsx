@@ -12,7 +12,6 @@ const AddBook = () => {
   const [addBook, { data, isError, error }] = useAddBookMutation();
   const onSubmit: SubmitHandler<IBook> = (bookdata: IBook) => {
     const book = { ...bookdata, addedBy: user?.email, reviews: [] };
-    console.log(book);
     addBook(book);
   };
   useEffect(() => {

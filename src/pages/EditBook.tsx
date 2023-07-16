@@ -7,11 +7,14 @@ import { useForm } from "react-hook-form";
 import { IBook } from "../types/bookType";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
+import { useAppSelector } from "../redux/hook";
 
 const EditBook = () => {
   const { id } = useParams();
   const { data } = useSingleBookQuery(id);
   const date = data?.publicationDate.split("T")[0];
+
+  const { user } = useAppSelector((state) => state.auth);
   const [editBook, { data: editedData }] = useEditBookMutation();
 
   const { register, handleSubmit } = useForm<IBook>();
@@ -33,7 +36,7 @@ const EditBook = () => {
     }
   }, [editedData]);
 
-  return (
+  return user?.email === data?.addedBy ? (
     <div className="text-start p-10 bg-white">
       <h2 className="text-2xl font-bold text-center">Edit Book</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -111,6 +114,12 @@ const EditBook = () => {
           </button>
         </div>
       </form>
+    </div>
+  ) : (
+    <div className="h-screen">
+      <h1 className=" text-4xl text-orange-400 font-bold text-center items-center">
+        You Are Not Authorized For Editting This Book.
+      </h1>
     </div>
   );
 };

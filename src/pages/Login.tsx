@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { loginUser } from "../redux/features/auth/authSlice";
@@ -17,6 +17,9 @@ const Login = () => {
   } = useForm<LoginFormInputs>();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.path || "/";
+
   const dispatch = useAppDispatch();
   const { user, isLoading, isError, error } = useAppSelector(
     (state) => state.auth
@@ -28,10 +31,10 @@ const Login = () => {
 
   useEffect(() => {
     if (!isLoading && user.email) {
-      navigate("/");
+      navigate(from);
       toast.success("Login Successfull");
     }
-  }, [user, isLoading, navigate]);
+  }, [user, isLoading, navigate, from]);
   return (
     <div className="h-[500px] flex flex-col justify-center items-center py-2">
       <h2 className="text-4xl font-bold">Login</h2>
